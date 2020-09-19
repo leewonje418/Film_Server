@@ -166,7 +166,7 @@
                 processData: false,
                 contentType: false,
                 success: (data) => {
-                    storedPath = data.storedPath;
+                    // storedPath = data.storedPath;
                     originalName = data.originalName;
                 },
             });
@@ -221,7 +221,7 @@
             try {
                 await uploadFile(id);
                 let user = {
-                    storedPath: storedPath,
+                    // storedPath: storedPath,
                     originalName: originalName
                 };
                 let response = await $.ajax({
@@ -260,7 +260,7 @@
             $(button).text('삭제');
             $(button).prev().text('수정');
             $(`#line${id}`).find('div:nth-child(4)').html(originalName);
-            $(`#line${id}`).find('div:nth-child(5)').html(storedPath);
+            // $(`#line${id}`).find('div:nth-child(5)').html(storedPath);
         }
     }
     function addUserLine(response) {
@@ -270,7 +270,7 @@
                 <div style="width: 350px;">${response.email}</div>
                 <div style="width: 150px;">${response.password}</div>
                 <div style="width: 350px;">${response.originalName}</div>
-                <div style="width: 500px;">${response.storedPath}</div>
+                <!--<div style="width: 500px;">${response.storedPath}</div>-->
                 <div>
                     <button onclick="editUser(this, ${response.id})">수정</button>
                     <button onclick="removeUser(this, ${response.id})">삭제</button>
