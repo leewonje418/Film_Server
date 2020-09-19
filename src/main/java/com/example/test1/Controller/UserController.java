@@ -13,9 +13,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/add")
-    public User add(@RequestBody User user) {
-        return userService.login(user.getEmail(), user.getPassword());
-    }
+    public User add(@RequestBody User user) { return userService.add(user); }
 
     @PostMapping("/user/login")
     public User login(@RequestBody User user) {
