@@ -22,4 +22,11 @@ public class Comment {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime modified;
+    public Comment(Comment c) {
+        this.id = c.getId();
+        this.User_id = c.getUser_id();
+        this.comment = c.getComment();
+        this.createdAt = c.getCreatedAt();
+        this.modified = c.getModified();
+    }
 }
