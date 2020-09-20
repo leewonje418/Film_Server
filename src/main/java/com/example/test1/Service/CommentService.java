@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface CommentService {
     CommentUserProtocol add(Comment comment);
+
     boolean remove(Long id);
+
     CommentUserProtocol update(Long id, Comment comment);
+
     CommentUserProtocol view(Long id);
+
     List<CommentUserProtocol> listAllComments();
 }
