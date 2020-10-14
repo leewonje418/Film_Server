@@ -66,3 +66,9 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "email": "ccc@dgswww",
+  "password": "1234"
+}
