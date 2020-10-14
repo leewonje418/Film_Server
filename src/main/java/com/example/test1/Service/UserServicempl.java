@@ -4,8 +4,6 @@ import com.example.test1.Domain.User;
 import com.example.test1.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
