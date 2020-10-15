@@ -16,17 +16,17 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long id;
-    private Long User_id;
+    private Long user_id;
     private String comment;
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDateTime createdat;
     @UpdateTimestamp
     private LocalDateTime modified;
     public Comment(Comment c) {
         this.id = c.getId();
-        this.User_id = c.getUser_id();
+        this.user_id = c.getUser_id();
         this.comment = c.getComment();
-        this.createdAt = c.getCreatedAt();
+        this.createdat = c.getCreatedat();
         this.modified = c.getModified();
     }
 }

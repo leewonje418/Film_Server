@@ -8,7 +8,7 @@ import java.util.List;
 public interface CommentService {
     CommentUserProtocol add(Comment comment);
 
-    boolean remove(Long id);
+    boolean delete(Long id);
 
     CommentUserProtocol update(Long id, Comment comment);
 

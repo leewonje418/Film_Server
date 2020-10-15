@@ -19,14 +19,14 @@ public class User {
     @GeneratedValue
     private Long id;
     private String user_id;
-    private String nickName;
-    private String userName;
-    private String phoneNumber;
-    private LocalDate birthDate;
+    private String nickname;
+    private String username;
+    private String phonenumber;
+    private LocalDate birthdate;
     private int gender;
     private String email;
     private String password;
-    private String storedPath;
+    private String storedpath;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

@@ -22,9 +22,9 @@ public class CommentController {
     public CommentUserProtocol update(@PathVariable Long id, @RequestBody Comment comment) {
         return commentService.update(id, comment);
     }
-    @DeleteMapping("/comment/remove/{id}")
+    @DeleteMapping("/comment/delete/{id}")
     public boolean remove(@PathVariable Long id) {
-        return commentService.remove(id);
+        return commentService.delete(id);
     }
     @GetMapping("/comment/view/{id}")
     public CommentUserProtocol view(@PathVariable Long id) {

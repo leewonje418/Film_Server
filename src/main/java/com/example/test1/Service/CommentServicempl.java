@@ -25,13 +25,18 @@ public class CommentServicempl implements CommentService {
         return new CommentUserProtocol(
                 commentRepository.save(comment),
                 userRepository.findById(comment.getUser_id())
-                    .map(found -> found.getUserName())
+                    .map(found -> found.getUsername())
                     .orElse(null));
     }
 
     @Override
-    public boolean remove(Long id) {
-        return true;
+    public boolean delete(Long id) {
+        try {
+            commentRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -42,7 +47,7 @@ public class CommentServicempl implements CommentService {
                     .map(found -> {
                         found.setComment(Optional.ofNullable(comment.getComment()).orElse(found.getComment()));
                         commentRepository.save(found);
-                        return new CommentUserProtocol(found, user.get().getUserName());
+                        return new CommentUserProtocol(found, user.get().getUsername());
                     })
                     .orElse(null);
         }
@@ -54,7 +59,7 @@ public class CommentServicempl implements CommentService {
         return commentRepository.findById(id)
                 .map(found -> {
                     Optional<User> user = userRepository.findById(found.getUser_id());
-                    String username = user.isPresent() ? user.get().getUserName() : null;
+                    String username = user.isPresent() ? user.get().getUsername() : null;
                     return new CommentUserProtocol(found, username);
                 })
                 .orElse(null);
@@ -66,7 +71,7 @@ public class CommentServicempl implements CommentService {
         List<CommentUserProtocol> cupList = new ArrayList<>();
         commentList.forEach(comment -> {
             Optional<User> found = userRepository.findById(comment.getUser_id());
-            String username = found.isPresent() ? found.get().getUserName() : null;
+            String username = found.isPresent() ? found.get().getUsername() : null;
             cupList.add(new CommentUserProtocol(comment, username));
         });
         return cupList;

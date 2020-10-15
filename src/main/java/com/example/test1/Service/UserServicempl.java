@@ -32,10 +32,10 @@ public class UserServicempl implements UserService {
     public User update(Long id, User user) {
         return userRepository.findById(id)
                 .map(found -> {
-                    found.setUserName(Optional.ofNullable(user.getUserName()).orElse(found.getUserName()));
+                    found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
                     found.setEmail(Optional.ofNullable(user.getEmail()).orElse(found.getEmail()));
-                    found.setUserName(Optional.ofNullable(user.getUserName()).orElse(found.getUserName()));
-                    found.setStoredPath(Optional.ofNullable(user.getStoredPath()).orElse(found.getStoredPath()));
+                    found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
+                    found.setStoredpath(Optional.ofNullable(user.getStoredpath()).orElse(found.getStoredpath()));
                     return userRepository.save(found);
                 })
                 .orElse(null);
