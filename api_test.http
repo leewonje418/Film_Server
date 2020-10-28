@@ -72,3 +72,7 @@ Content-Type: application/json
   "email": "ccc@dgswww",
   "password": "1234"
 }
+
+###
+GET http://localhost:8080/api/v1/movies/기생충
+Content-Type: application/json
