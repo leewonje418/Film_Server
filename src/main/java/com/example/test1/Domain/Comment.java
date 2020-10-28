@@ -18,6 +18,8 @@ public class Comment {
     private Long id;
     private Long user_id;
     private String comment;
+    private String storedPath;
+    private String originalName;
     @CreationTimestamp
     private LocalDateTime createdat;
     @UpdateTimestamp
