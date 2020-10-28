@@ -35,7 +35,7 @@ public class UserServicempl implements UserService {
                     found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
                     found.setEmail(Optional.ofNullable(user.getEmail()).orElse(found.getEmail()));
                     found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
-                    found.setStoredpath(Optional.ofNullable(user.getStoredpath()).orElse(found.getStoredpath()));
+                    found.setStoredPath(Optional.ofNullable(user.getStoredPath()).orElse(found.getStoredPath()));
                     return userRepository.save(found);
                 })
                 .orElse(null);
