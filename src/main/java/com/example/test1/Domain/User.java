@@ -26,7 +26,8 @@ public class User {
     private int gender;
     private String email;
     private String password;
-    private String storedpath;
+    private String storedPath;
+    private String originalName;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
