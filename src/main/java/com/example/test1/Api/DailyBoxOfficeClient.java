@@ -19,7 +19,6 @@ import java.util.Map;
 @Service
 public class DailyBoxOfficeClient {
     private RestTemplate restTemplate = new RestTemplate();
-    private final String api = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=8731a2a39a8f057b67ee66bfa1a0f959&targetDt={keyword}";
     public String requestDailyBoxOffice(String keyword) throws JsonProcessingException {
         HashMap<String, Object> result = new HashMap<String, Object>();
 
