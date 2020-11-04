@@ -21,7 +21,6 @@ public class DailyBoxOfficeClient {
     private RestTemplate restTemplate = new RestTemplate();
     public String requestDailyBoxOffice(String keyword) throws JsonProcessingException {
         HashMap<String, Object> result = new HashMap<String, Object>();
-
         String jsonInString = "";
         HttpHeaders header = new HttpHeaders();
         HttpEntity<?> entity = new HttpEntity<>(header);
