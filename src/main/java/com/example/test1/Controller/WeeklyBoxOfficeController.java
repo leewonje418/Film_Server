@@ -1,7 +1,6 @@
 package com.example.test1.Controller;
 
 import com.example.test1.Api.WeeklyBoxOfficeClient;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WeeklyBoxOfficeController {
     private final WeeklyBoxOfficeClient weeklyboxofficeclient;
     @GetMapping("/api/v1/weeklyboxoffice/{keyword}")
-    public String get(@PathVariable String keyword) throws JsonProcessingException {
+    public String get(@PathVariable String keyword) throws Exception {
         return weeklyboxofficeclient.requestWeeklyBoxOffice(keyword);
     }
 }
