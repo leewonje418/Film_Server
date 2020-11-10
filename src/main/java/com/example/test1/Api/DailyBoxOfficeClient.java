@@ -1,7 +1,6 @@
 package com.example.test1.Api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,7 +18,7 @@ import java.util.Map;
 @Service
 public class DailyBoxOfficeClient {
     private RestTemplate restTemplate = new RestTemplate();
-    public String requestDailyBoxOffice(String keyword) throws JsonProcessingException {
+    public Map requestDailyBoxOffice(String keyword) throws JsonProcessingException {
         HashMap<String, Object> result = new HashMap<String, Object>();
         String jsonInString = "";
         HttpHeaders header = new HttpHeaders();
@@ -35,9 +34,6 @@ public class DailyBoxOfficeClient {
         result.put("header", resultMap.getHeaders()); //헤더 정보 확인
         result.put("body", resultMap.getBody()); //실제 데이터 정보 확인
 
-        //데이터를 제대로 전달 받았는지 확인 string형태로 파싱해줌
-        ObjectMapper mapper = new ObjectMapper();
-        jsonInString = mapper.writeValueAsString(resultMap.getBody());
-        return jsonInString;
+        return resultMap.getBody();
     }
 }
