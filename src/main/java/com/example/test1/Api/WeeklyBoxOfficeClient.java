@@ -1,7 +1,6 @@
 package com.example.test1.Api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,7 +18,7 @@ import java.util.Map;
 @Service
 public class WeeklyBoxOfficeClient {
     private RestTemplate restTemplate = new RestTemplate();
-    public String requestWeeklyBoxOffice(String keyword) throws JsonProcessingException {
+    public Map requestWeeklyBoxOffice(String keyword) throws JsonProcessingException {
         HashMap<String, Object> result = new HashMap<String, Object>();
 
         String jsonInString = "";
@@ -30,13 +29,12 @@ public class WeeklyBoxOfficeClient {
 
         UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"key=430156241533f1d058c603178cc3ca0e&targetDt="+keyword).build();
 
+        //이 한줄의 코드로 API를 호출해 MAP타입으로 전달 받는다.
         ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
-        result.put("statusCode", resultMap.getStatusCodeValue());
-        result.put("header", resultMap.getHeaders());
-        result.put("body", resultMap.getBody());
+        result.put("statusCode", resultMap.getStatusCodeValue()); //http status code를 확인
+        result.put("header", resultMap.getHeaders()); //헤더 정보 확인
+        result.put("body", resultMap.getBody()); //실제 데이터 정보 확인
 
-        ObjectMapper mapper = new ObjectMapper();
-        jsonInString = mapper.writeValueAsString(resultMap.getBody());
-        return jsonInString;
+        return resultMap.getBody();
     }
 }
