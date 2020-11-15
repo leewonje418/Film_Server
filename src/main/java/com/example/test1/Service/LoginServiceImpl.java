@@ -2,6 +2,7 @@ package com.example.test1.Service;
 
 import com.example.test1.Domain.User;
 import com.example.test1.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,10 @@ import java.util.Optional;
 
 @Service
 public class LoginServiceImpl implements LoginService {
+    @Autowired
+    UserRepository userRepository;
     @Override
     public boolean login(String email, String password, HttpServletRequest req, HttpServletResponse res) {
-        UserRepository userRepository = null;
         Optional<User> user = userRepository.findByEmail(email);
         HttpSession session = req.getSession();
         try {
