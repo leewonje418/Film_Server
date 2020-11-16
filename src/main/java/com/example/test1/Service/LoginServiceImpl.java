@@ -4,6 +4,7 @@ import com.example.test1.Domain.User;
 import com.example.test1.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,15 +16,14 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     UserRepository userRepository;
     @Override
-    public boolean login(String email, String password, HttpServletRequest req, HttpServletResponse res) {
+    public boolean login(String email, String password, Model model, HttpServletRequest req, HttpServletResponse res) {
         Optional<User> user = userRepository.findByEmail(email);
         HttpSession session = req.getSession();
         try {
             if (user.isPresent() && user.get().getPassword().equals(password)) {
                 if(session == null || session.getAttribute("sessionId") == null) {
                     session.setAttribute("sessionId", email);
-                    session.setMaxInactiveInterval(60 * 30);
-                    res.setHeader("set-cookie", "sessionId=" + email);
+                    session.setMaxInactiveInterval(60*60*24*3);
                     return true;
                 }
             } else {
