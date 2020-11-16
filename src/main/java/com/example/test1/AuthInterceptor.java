@@ -12,13 +12,16 @@ import java.io.IOException;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response, Object handler) throws IOException {
+                             HttpServletResponse response,
+                             Object handler) throws IOException {
         HttpSession httpSession = request.getSession(); // 여기가 문제, 여기서 null뜨면 안됨
+
         if (httpSession.getAttribute("sessionId") != null) {
             response.getOutputStream().print("YAY");
             return true;
+        } else {
+            response.getOutputStream().print("YI");
         }
-        response.getOutputStream().print("YI");
         return false;
     }
 }
