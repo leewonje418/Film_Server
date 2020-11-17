@@ -26,7 +26,6 @@ public class LoginServiceImpl implements LoginService {
                     session.setMaxInactiveInterval(60*60*24*3);
                     System.out.println(session);
                     System.out.println(session.getAttribute("sessionId"));
-//                    res.setHeader("set-cookie", "sessionId=" + email);
                     return true;
                 }
             } else {
