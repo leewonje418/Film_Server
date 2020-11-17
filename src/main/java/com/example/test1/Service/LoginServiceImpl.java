@@ -16,7 +16,7 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     UserRepository userRepository;
     @Override
-    public boolean login(String email, String password, Model model, HttpServletRequest req, HttpServletResponse res) {
+    public User login(String email, String password, Model model, HttpServletRequest req, HttpServletResponse res) {
         Optional<User> user = userRepository.findByEmail(email);
         HttpSession session = req.getSession();
         try {
@@ -26,18 +26,19 @@ public class LoginServiceImpl implements LoginService {
                     session.setMaxInactiveInterval(60*60*24*3);
                     System.out.println(session);
                     System.out.println(session.getAttribute("sessionId"));
-                    return true;
+                    System.out.println(user.get());
+                    return user.get();
                 }
             } else {
                 res.setStatus(400);
                 res.setContentType("text/xml;charset=UTF-8");
                 res.setCharacterEncoding("utf-8");
                 res.getWriter().write("아이디 또는 비밀번호가 올바르지 않습니다.");
-                return false;
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }
