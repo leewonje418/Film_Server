@@ -14,8 +14,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws IOException {
-        HttpSession httpSession = request.getSession(); // 여기가 문제, 여기서 null뜨면 안됨
-
+        HttpSession httpSession = request.getSession();
+        System.out.println(httpSession);
+        System.out.println(httpSession.getAttribute("sessionId"));
         if (httpSession.getAttribute("sessionId") != null) {
             response.getOutputStream().print("YAY");
             return true;
