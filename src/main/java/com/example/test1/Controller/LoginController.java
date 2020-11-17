@@ -17,8 +17,8 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @CrossOrigin(origins = "*")
-    @RequestMapping(value="/login", produces="text/xml;charset=UTF-8", method=RequestMethod.POST)
-    public void login(@RequestBody User user, Model model, HttpServletRequest req, HttpServletResponse res) throws IOException {
-        loginService.login(user.getEmail(), user.getPassword(), model, req, res);
+    @PostMapping("/login")
+    public User login(@RequestBody User user, Model model, HttpServletRequest req, HttpServletResponse res) throws IOException {
+        return loginService.login(user.getEmail(), user.getPassword(), model, req, res);
     }
 }
