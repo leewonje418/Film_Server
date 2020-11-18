@@ -55,4 +55,16 @@ public class UserController {
             throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "서버 오류.");
         }
     }
+    @GetMapping("/user/nicknamecheck")
+    @ResponseStatus(HttpStatus.OK)
+    public Response nicknamecheck(@RequestParam String nickname) {
+        try {
+            return userService.nicknamecheck(nickname);
+        } catch (HttpClientErrorException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "서버 오류.");
+        }
+    }
 }
