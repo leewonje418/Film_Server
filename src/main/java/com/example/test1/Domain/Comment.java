@@ -18,6 +18,8 @@ public class Comment {
     private Long id;
     private Long user_id;
     private String comment;
+    private String movieName;
+    private String director;
     private String storedPath;
     private String originalName;
     @CreationTimestamp
@@ -28,6 +30,8 @@ public class Comment {
         this.id = c.getId();
         this.user_id = c.getUser_id();
         this.comment = c.getComment();
+        this.movieName = c.getMovieName();
+        this.director = c.getDirector();
         this.createdat = c.getCreatedat();
         this.modified = c.getModified();
     }
