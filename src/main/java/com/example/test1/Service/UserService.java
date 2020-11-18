@@ -1,6 +1,7 @@
 package com.example.test1.Service;
 
 import com.example.test1.Domain.User;
+import com.example.test1.http.Response;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface UserService {
     boolean delete(Long id);
     User View(Long id);
     List<User> list();
-    String emailcheck(String email);
+    Response emailcheck(String email);
 }
