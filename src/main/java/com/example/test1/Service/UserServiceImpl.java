@@ -74,4 +74,14 @@ public class UserServiceImpl implements UserService {
             return new Response(HttpStatus.OK, "사용 가능한 이메일");
         }
     }
+
+    @Override
+    public Response nicknamecheck(String nickname) {
+        Optional<User> user = userRepository.findByNickname(nickname);
+        if(user.isPresent() && user != null) {
+            return new Response(HttpStatus.CONFLICT, "중복된 닉네임.");
+        } else {
+            return new Response(HttpStatus.OK, "사용 가능한 닉네임");
+        }
+    }
 }
