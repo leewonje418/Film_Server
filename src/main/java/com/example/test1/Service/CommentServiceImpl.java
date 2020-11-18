@@ -76,4 +76,15 @@ public class CommentServiceImpl implements CommentService {
         });
         return cupList;
     }
+
+    public List<CommentUserProtocol> searchOfNameAndDir(String movieName, String director) {
+        List<Comment> commentList = commentRepository.findAllByMovieNameAndDirector(movieName, director);
+        List<CommentUserProtocol> cupList = new ArrayList<>();
+        commentList.forEach(comment -> {
+            Optional<User> found = userRepository.findById(comment.getUser_id());
+            String username = found.isPresent() ? found.get().getUsername() : null;
+            cupList.add(new CommentUserProtocol(comment, username));
+        });
+        return cupList;
+    }
 }
