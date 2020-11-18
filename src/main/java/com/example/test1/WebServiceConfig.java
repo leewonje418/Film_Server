@@ -13,7 +13,7 @@ public class WebServiceConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor)
-                .addPathPatterns("/comment/**", "/user/update/**", "/user/delete/**"); // 이 경로로 REQUEST 오면 Interceptor 발동
+                .addPathPatterns("/comment/**", "/user/update/**", "/user/delete/**", "/logout"); // 이 경로로 REQUEST 오면 Interceptor 발동
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) { // CORS 처리라서 냅두세요
