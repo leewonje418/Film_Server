@@ -15,4 +15,6 @@ public interface CommentService {
     CommentUserProtocol view(Long id);
 
     List<CommentUserProtocol> listAllComments();
+
+    List<CommentUserProtocol> searchOfNameAndDir(String movieName, String director);
 }
