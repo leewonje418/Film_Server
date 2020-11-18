@@ -2,10 +2,10 @@ package com.example.test1.Service;
 
 import com.example.test1.Domain.User;
 import com.example.test1.Repository.UserRepository;
+import com.example.test1.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,11 +66,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String emailcheck(String email) {
+    public Response emailcheck(String email) {
         Optional<User> user = userRepository.findByEmail(email);
-        if(user.isPresent()) {
-            throw new HttpClientErrorException(HttpStatus.CONFLICT, "중복된 이메일.");
+        if(user.isPresent() && user != null) {
+            return new Response(HttpStatus.CONFLICT, "중복된 이메일.");
+        } else {
+            return new Response(HttpStatus.OK, "사용 가능한 이메일");
         }
-        return email;
     }
 }
