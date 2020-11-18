@@ -2,8 +2,11 @@ package com.example.test1.Controller;
 
 import com.example.test1.Domain.User;
 import com.example.test1.Service.UserService;
+import com.example.test1.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -38,5 +41,19 @@ public class UserController {
     @GetMapping("/user/list")
     public List<User> list() {
         return userService.list();
+    }
+
+    @GetMapping("/user/emailcheck")
+    @ResponseStatus(HttpStatus.OK)
+    public Response emailcheck(@RequestParam String email) {
+        try {
+            userService.emailcheck(email);
+            return new Response(HttpStatus.OK, "이메일 중복 확인.");
+        } catch (HttpClientErrorException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "서버 오류.");
+        }
     }
 }
