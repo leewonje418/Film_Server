@@ -11,4 +11,5 @@ public interface UserService {
     boolean delete(Long id);
     User View(Long id);
     List<User> list();
+    String emailcheck(String email);
 }
