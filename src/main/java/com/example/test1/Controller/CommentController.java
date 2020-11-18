@@ -1,10 +1,8 @@
 package com.example.test1.Controller;
 
 import com.example.test1.Domain.Comment;
-import com.example.test1.Domain.User;
 import com.example.test1.Protocol.CommentUserProtocol;
 import com.example.test1.Service.CommentService;
-import com.example.test1.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,4 +32,7 @@ public class CommentController {
     public List<CommentUserProtocol> listAllComments() {
         return commentService.listAllComments();
     }
+
+    @GetMapping("/comment/searchofnameanddir")
+    public List<CommentUserProtocol> searchOfNameAndDir(@RequestParam String movieName, @RequestParam String director) { return commentService.searchOfNameAndDir(movieName, director); }
 }
