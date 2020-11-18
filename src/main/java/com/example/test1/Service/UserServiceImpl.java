@@ -45,12 +45,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public Response delete(Long id) {
         try {
             userRepository.deleteById(id);
-            return true;
+            return new Response(HttpStatus.MOVED_PERMANENTLY, "계정 삭제 성공!");
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
 
