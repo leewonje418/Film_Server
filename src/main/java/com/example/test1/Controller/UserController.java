@@ -47,8 +47,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public Response emailcheck(@RequestParam String email) {
         try {
-            userService.emailcheck(email);
-            return new Response(HttpStatus.OK, "이메일 중복 확인.");
+            return userService.emailcheck(email);
         } catch (HttpClientErrorException e) {
             throw e;
         } catch (Exception e) {
