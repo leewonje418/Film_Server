@@ -93,3 +93,11 @@ Content-Type: application/json
   "email": "b@dgsw",
   "password": "1234"
 }
+
+###
+POST http://localhost:8080/user/emailcheck
+Content-Type: application/json
+
+{
+  "email": "b@dgsw"
+}
