@@ -9,7 +9,7 @@ public interface UserService {
     User add(User user);
     User login(String email, String password);
     User update(Long id, User user);
-    boolean delete(Long id);
+    Response delete(Long id);
     User View(Long id);
     List<User> list();
     Response emailcheck(String email);
