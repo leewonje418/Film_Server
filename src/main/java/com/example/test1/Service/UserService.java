@@ -13,4 +13,5 @@ public interface UserService {
     User View(Long id);
     List<User> list();
     Response emailcheck(String email);
+    Response nicknamecheck(String nickname);
 }
