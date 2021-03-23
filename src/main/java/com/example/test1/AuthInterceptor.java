@@ -11,12 +11,8 @@ import java.io.IOException;
 @Component
 public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Override
-    public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response,
-                             Object handler) throws IOException {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         HttpSession httpSession = request.getSession();
-        System.out.println(httpSession);
-        System.out.println(httpSession.getAttribute("sessionId"));
         if (httpSession.getAttribute("sessionId") != null) {
             response.getOutputStream().print("YAY");
             return true;

@@ -32,16 +32,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long id, User user) {
-        return userRepository.findById(id)
-                .map(found -> {
-                    found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
-                    found.setEmail(Optional.ofNullable(user.getEmail()).orElse(found.getEmail()));
-                    found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
-                    found.setStoredPath(Optional.ofNullable(user.getStoredPath()).orElse(found.getStoredPath()));
-                    return userRepository.save(found);
-                })
-                .orElse(null);
+    public Response update(Long id, User user) {
+        userRepository.findById(id).map(found -> {
+            found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
+            found.setEmail(Optional.ofNullable(user.getEmail()).orElse(found.getEmail()));
+            found.setUsername(Optional.ofNullable(user.getUsername()).orElse(found.getUsername()));
+            found.setStoredPath(Optional.ofNullable(user.getStoredPath()).orElse(found.getStoredPath()));
+            userRepository.save(found);
+            return new Response(HttpStatus.MOVED_PERMANENTLY, "계정 삭제 성공!");
+        }).orElse(null);
+        return null;
     }
 
     @Override

@@ -27,9 +27,6 @@ public class LoginAndLogoutServiceImpl implements LoginAndLogoutService {
                 if(session == null || session.getAttribute("sessionId") == null) {
                     session.setAttribute("sessionId", email);
                     session.setMaxInactiveInterval(60*60*24*3);
-                    System.out.println(session);
-                    System.out.println(session.getAttribute("sessionId"));
-                    System.out.println(user.get());
                     return user.get();
                 }
             } else {
