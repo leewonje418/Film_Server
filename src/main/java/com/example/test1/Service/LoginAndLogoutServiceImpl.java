@@ -19,7 +19,7 @@ public class LoginAndLogoutServiceImpl implements LoginAndLogoutService {
     @Autowired
     UserRepository userRepository;
     @Override
-    public User login(String email, String password, Model model, HttpServletRequest req, HttpServletResponse res) {
+    public Response login(String email, String password, Model model, HttpServletRequest req, HttpServletResponse res) {
         Optional<User> user = userRepository.findByEmail(email);
         HttpSession session = req.getSession();
         try {
@@ -27,7 +27,7 @@ public class LoginAndLogoutServiceImpl implements LoginAndLogoutService {
                 if(session == null || session.getAttribute("sessionId") == null) {
                     session.setAttribute("sessionId", email);
                     session.setMaxInactiveInterval(60*60*24*3);
-                    return user.get();
+                    return new Response(HttpStatus.OK, "사용 가능한 이메일");
                 }
             } else {
                 res.setStatus(400);

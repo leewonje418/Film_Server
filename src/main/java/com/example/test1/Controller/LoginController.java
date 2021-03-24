@@ -19,7 +19,7 @@ public class LoginController {
     private LoginAndLogoutService loginAndLogoutService;
     @CrossOrigin(origins = "*")
     @PostMapping("/login")
-    public User login(@RequestBody User user, Model model, HttpServletRequest req, HttpServletResponse res) throws IOException {
+    public Response login(@RequestBody User user, Model model, HttpServletRequest req, HttpServletResponse res) throws IOException {
         return loginAndLogoutService.login(user.getEmail(), user.getPassword(), model, req, res);
     }
 
